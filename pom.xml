@@ -6,12 +6,12 @@
 
     <groupId>com.thoughtworks.go</groupId>
     <artifactId>email-notifier</artifactId>
-    <version>0.1</version>
+    <version>0.09</version>
     <packaging>jar</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <go.version>14.4.0</go.version>
+        <go.version>15.1.0</go.version>
     </properties>
 
     <dependencies>
