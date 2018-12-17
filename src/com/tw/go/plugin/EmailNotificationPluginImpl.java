@@ -1,3 +1,19 @@
+/*
+ * Copyright 2018 ThoughtWorks, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.tw.go.plugin;
 
 import com.google.gson.GsonBuilder;
@@ -49,6 +65,7 @@ public class EmailNotificationPluginImpl implements GoPlugin {
     public static final int INTERNAL_ERROR_RESPONSE_CODE = 500;
 
     private GoApplicationAccessor goApplicationAccessor;
+    private SessionFactory sessionFactory = new SessionFactory();
 
     @Override
     public void initializeGoApplicationAccessor(GoApplicationAccessor goApplicationAccessor) {
@@ -135,7 +152,7 @@ public class EmailNotificationPluginImpl implements GoPlugin {
 
                 for (String receiverEmailId : receiverEmailIds) {
                     SMTPSettings settings = new SMTPSettings(pluginSettings.getSmtpHost(), pluginSettings.getSmtpPort(), pluginSettings.isTls(), pluginSettings.getSenderEmailId(), pluginSettings.getSmtpUsername(), pluginSettings.getSenderPassword());
-                    new SMTPMailSender(settings).send(subject, body, receiverEmailId);
+                    new SMTPMailSender(settings, sessionFactory).send(subject, body, receiverEmailId);
                 }
 
                 LOGGER.info("Successfully delivered an email.");
@@ -340,5 +357,9 @@ public class EmailNotificationPluginImpl implements GoPlugin {
                 return json;
             }
         };
+    }
+
+    void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
     }
 }
