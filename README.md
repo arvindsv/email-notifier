@@ -26,7 +26,7 @@
 
 * Customize when & whom to send emails for different events (Stage - Scheduled, Passed, Failed, Cancelled)
 
-* Run `mvn clean package -DskipTests` which will create plugin jar in 'dist' folder
+* Run `mvn clean package` which will create plugin jar in `dist` folder
 
 [1]: images/list-plugin.png  "List Plugin"
 [2]: images/configure-plugin.png  "Configure Plugin"
