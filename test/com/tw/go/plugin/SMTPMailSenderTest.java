@@ -36,7 +36,6 @@ public class SMTPMailSenderTest {
 
     @Before
     public void setUp() {
-        BasicConfigurator.configure();
         mailServer = new GreenMail(ServerSetupTest.SMTP);
         mailServer.start();
     }
